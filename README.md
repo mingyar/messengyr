@@ -1,20 +1,17 @@
-# Messengyr
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/2598660/23702379/3f268fe6-03fb-11e7-822d-46a85e43bc4e.png" width="400" />
+ </a>
+</p>
 
-To start your Phoenix server:
+<p align="center">
+A clone of <a href="http://messenger.com">Facebook Messenger</a>. <br>
+Built with <a href="http://elixir-lang.org">Elixir</a> and the <a href="http://www.phoenixframework.org">Phoenix framework</a>.
+</p>
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+----
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+ </a>
+ <br><br>
+ Want to learn how to build this?
+ Check out @t4t5 <a href="https://www.ludu.co/course/discover-elixir-phoenix">course</a> on @Ludu!
+</p>
