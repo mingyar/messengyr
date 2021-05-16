@@ -10,7 +10,11 @@ Built with <a href="http://elixir-lang.org">Elixir</a> and the <a href="http://w
 
 ----
 
+<p align="center">
+ <a href="https://messengyr.herokuapp.com">
+ <strong>DEMO</strong>
  </a>
  <br><br>
  Want to learn how to build this?
- Check out @t4t5 <a href="https://www.ludu.co/course/discover-elixir-phoenix">course</a> on @Ludu!
+ Check out <a href="https://github.com/t4t5">@t4t5</a> <a href="https://www.ludu.co/course/discover-elixir-phoenix">course on Ludu</a>!
+</p>
