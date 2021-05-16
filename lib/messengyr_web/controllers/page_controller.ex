@@ -4,4 +4,8 @@ defmodule MessengyrWeb.PageController do
   def index(conn, _params) do
     render(conn, "index.html")
   end
+
+  def say_hello(conn, _params) do
+    text conn, "Hello!"
+  end
 end
