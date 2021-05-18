@@ -1,6 +1,5 @@
 const path = require('path');
 const glob = require('glob');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -35,19 +34,29 @@ module.exports = (env, options) => {
           }
         },
         {
-          test: /\.[s]?css$/,
+          test: /\.scss$/,
           use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
+            'style-loader',
+            'css-loader?url=false',
             'sass-loader',
+          ] 
+        },
+        {
+          test: /\.(png|jpg|gif|svg)$/i,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192,
+              },
+            },
           ],
-        }
+        },
       ]
     },
     plugins: [
       new MiniCssExtractPlugin({ filename: '../css/app.css' }),
       new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
     ]
-    .concat(devMode ? [new HardSourceWebpackPlugin()] : [])
   }
 };
