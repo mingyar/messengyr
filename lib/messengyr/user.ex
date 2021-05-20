@@ -5,7 +5,7 @@ defmodule Messengyr.User do
   schema "users" do
     field :email, :string, unique: true
     field :encrypted_password, :string
-    field :usarname, :string, unique: true
+    field :username, :string, unique: true
 
     timestamps()
   end
@@ -13,7 +13,7 @@ defmodule Messengyr.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:usarname, :email, :encrypted_password])
-    |> validate_required([:usarname, :email, :encrypted_password])
+    |> cast(attrs, [:username, :email, :encrypted_password])
+    |> validate_required([:username, :email, :encrypted_password])
   end
 end
