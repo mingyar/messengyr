@@ -1,7 +1,5 @@
 [![Elixir CI](https://github.com/mingyar/messengyr/actions/workflows/elixir.yml/badge.svg)](https://github.com/mingyar/messengyr/actions/workflows/elixir.yml)
 
-----
-
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/2598660/23702379/3f268fe6-03fb-11e7-822d-46a85e43bc4e.png" width="400" />
  </a>
@@ -11,8 +9,6 @@
 A clone of <a href="http://messenger.com">Facebook Messenger</a>. <br>
 Built with <a href="http://elixir-lang.org">Elixir</a> and the <a href="http://www.phoenixframework.org">Phoenix framework</a>.
 </p>
-
-----
 
 <p align="center">
  <a href="https://messengyr.herokuapp.com">
