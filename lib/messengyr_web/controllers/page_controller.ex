@@ -17,6 +17,7 @@ defmodule MessengyrWeb.PageController do
   end
 
   def create_user(conn, %{"user" => user_params}) do
+
     case Accounts.create_user(user_params) do
 
       {:ok, _user} ->
