@@ -112,7 +112,9 @@ main {
   width: 352px;
   float: right;
   margin-top: 80px;
-
+  position: relative;
+  top: 40px;
+  left: 110px;
   .card {
     margin: 20px 0;
   }
@@ -174,10 +176,10 @@ input {
 }
 
 .alert {
-  top: 52px;
+  top: 40px;
   width: 417px;
   margin: 0 auto;
-  position: -webkit-sticky;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
