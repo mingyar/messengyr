@@ -33,4 +33,10 @@ defmodule MessengyrWeb.PageController do
     end
   end
 
+  def login_user(conn, params) do
+    conn
+    |> put_flash(:error, "Unable to log in!")
+    |> render("login.html")
+  end
+
 end
