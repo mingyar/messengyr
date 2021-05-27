@@ -1,6 +1,7 @@
 defmodule MessengyrWeb.PageController do
   use MessengyrWeb, :controller
   alias Messengyr.Accounts
+  alias Accounts.Session
 
   def index(conn, _params) do
     render conn
@@ -33,10 +34,17 @@ defmodule MessengyrWeb.PageController do
     end
   end
 
-  def login_user(conn, params) do
-    conn
-    |> put_flash(:error, "Unable to log in!")
-    |> render("login.html")
-  end
+  def login_user(conn, %{"credentials" => credentials}) do
+   case Session.authenticate(credentials) do
+    {:ok, %{username: username}} ->
+      conn
+      |> put_flash(:info, "Logged in as #{username}!")
+      |> render("login.html")
 
+    {:error, message} ->
+      conn
+      |> put_flash(:error, message)
+      |> render("login.html")
+   end
+  end
 end
