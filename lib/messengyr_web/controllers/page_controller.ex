@@ -2,6 +2,7 @@ defmodule MessengyrWeb.PageController do
   use MessengyrWeb, :controller
   alias Messengyr.Accounts
   alias Accounts.Session
+  alias Messengyr.Auth.Guardian
 
   def index(conn, _params) do
     render conn
@@ -36,8 +37,9 @@ defmodule MessengyrWeb.PageController do
 
   def login_user(conn, %{"credentials" => credentials}) do
    case Session.authenticate(credentials) do
-    {:ok, %{username: username}} ->
+    {:ok, %{username: username} = user} ->
       conn
+      |> Guardian.Plug.sign_in(user)
       |> put_flash(:info, "Logged in as #{username}!")
       |> render("login.html")
 
