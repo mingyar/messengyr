@@ -5,6 +5,9 @@ defmodule MessengyrWeb.PageController do
   alias Messengyr.Auth.Guardian
 
   def index(conn, _params) do
+    user = Guardian.Plug.current_resource(conn)
+    IO.inspect user
+
     render conn
   end
 

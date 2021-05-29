@@ -9,12 +9,16 @@ defmodule MessengyrWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :browser_session do
+    plug Messengyr.Auth.Pipeline
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", MessengyrWeb do
-    pipe_through :browser
+    pipe_through [:browser, :browser_session]
 
     get "/", PageController, :index
 
