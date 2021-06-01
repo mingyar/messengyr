@@ -52,4 +52,11 @@ defmodule MessengyrWeb.PageController do
       |> render("login.html")
    end
   end
+
+  def logout(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Signed out succesfully!")
+    |> redirect(to: "/")
+  end
 end
