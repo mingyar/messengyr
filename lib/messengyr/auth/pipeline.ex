@@ -5,4 +5,5 @@ defmodule Messengyr.Auth.Pipeline do
 
     plug Guardian.Plug.VerifySession
     plug Guardian.Plug.LoadResource, allow_blank: true
+
 end
