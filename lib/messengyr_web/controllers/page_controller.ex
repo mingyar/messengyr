@@ -5,10 +5,9 @@ defmodule MessengyrWeb.PageController do
   alias Messengyr.Auth.Guardian
 
   def index(conn, _params) do
-    user = Guardian.Plug.current_resource(conn)
-    IO.inspect user
+    changeset = Accounts.register_changeset
 
-    render conn
+    render conn, user_changeset: changeset
   end
 
   def login(conn, _params) do
@@ -22,7 +21,6 @@ defmodule MessengyrWeb.PageController do
   end
 
   def create_user(conn, %{"user" => user_params}) do
-
     case Accounts.create_user(user_params) do
 
       {:ok, _user} ->
@@ -51,5 +49,12 @@ defmodule MessengyrWeb.PageController do
       |> put_flash(:error, message)
       |> render("login.html")
    end
+  end
+
+  def logout(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Signed out succesfully!")
+    |> redirect(to: "/")
   end
 end

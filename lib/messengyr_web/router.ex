@@ -7,6 +7,7 @@ defmodule MessengyrWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Guardian.Plug.Pipeline, module: Messengyr.Guardian, error_handler: MessengyrWeb.ChatController
   end
 
   pipeline :browser_session do
@@ -24,6 +25,9 @@ defmodule MessengyrWeb.Router do
 
     get "/signup", PageController, :signup
     get "/login", PageController, :login
+    get "/logout", PageController, :logout
+
+    get "/messages", ChatController, :index
 
     post "/signup", PageController, :create_user
     post "/login", PageController, :login_user
