@@ -13,3 +13,9 @@ import "../css/app.scss"
 //     import socket from "./socket"
 //
 import "phoenix_html"
+import "react-phoenix"
+
+import Hello from "./react/src/components/hello"
+  window.Components = {
+    Hello
+}
