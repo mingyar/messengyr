@@ -1,1 +1,1 @@
-<%= react_component("Components.Hello", %{name: "Mingyar"}) %>
+<%= react_component("Components.App") %>

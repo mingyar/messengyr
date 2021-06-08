@@ -2,6 +2,8 @@
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
 import "../css/app.scss"
+import "../css/header.scss";
+import "../css/messages.scss";
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -14,8 +16,35 @@ import "../css/app.scss"
 //
 import "phoenix_html"
 import "react-phoenix"
+import React from "react"
 
-import Hello from "./react/src/components/hello"
-  window.Components = {
-    Hello
+import ChatContainer from "./components/chat-container";
+import MenuContainer from "./components/menu-container";
+
+import DATA from './fake-data';
+
+class App extends React.Component {
+  render() {
+    // Extract the data:
+    const ROOMS = DATA.rooms;
+    const MESSAGES = DATA.rooms[0].messages;
+
+    // Pass the relevant data as props:
+    return (
+      <div id="app">
+        <MenuContainer 
+          rooms={ROOMS} 
+        />
+        <ChatContainer 
+          messages={MESSAGES}
+        />
+      </div>
+    )
+  }
+}
+
+window.Components = {
+  App, 
+  MenuContainer, 
+  ChatContainer
 }
