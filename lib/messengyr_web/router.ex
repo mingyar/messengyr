@@ -33,6 +33,12 @@ defmodule MessengyrWeb.Router do
     post "/login", PageController, :login_user
   end
 
+  scope "/api", MessengyrWeb do
+    pipe_through :api
+
+    resources "/user", UserController, only: [:show]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", MessengyrWeb do
   #   pipe_through :api
