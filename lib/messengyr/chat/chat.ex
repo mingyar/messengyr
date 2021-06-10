@@ -28,6 +28,11 @@ defmodule Messengyr.Chat do
   end
 
   def list_rooms do
-    Repo.all(Room) |> Repo.preload(:messages)
+    Repo.all(Room) |> preload_room_data
   end
+
+  defp preload_room_data(room) do
+    room |> Repo.preload(:messages) |> Repo.preload(:users)
+  end
+
 end
