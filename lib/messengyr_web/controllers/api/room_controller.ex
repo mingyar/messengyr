@@ -3,6 +3,9 @@ defmodule MessengyrWeb.RoomController do
   alias Messengyr.Chat
 
   def index(conn, _params) do
+    user = Guardian.Plug.current_resource(conn)
+    IO.inspect user
+
     rooms = Chat.list_rooms
     render(conn, "index.json", rooms: rooms)
   end
