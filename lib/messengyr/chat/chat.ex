@@ -26,4 +26,8 @@ defmodule Messengyr.Chat do
 
     Repo.insert(message)
   end
+
+  def list_rooms do
+    Repo.all(Room)
+  end
 end
