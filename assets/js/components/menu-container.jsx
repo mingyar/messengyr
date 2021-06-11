@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import MenuMessage from './menu-message';
 
@@ -31,5 +30,9 @@ class MenuContainer extends React.Component {
     )
   }
 }
+
+MenuContainer.defaultProps = {
+	rooms: [],
+};
 
 export default MenuContainer;
