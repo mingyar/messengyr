@@ -13,7 +13,8 @@ module.exports = (env, options) => {
       alias: {
         react: path.resolve(__dirname, './node_modules/react'),
         'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
-				'whatwg-fetch': path.resolve(__dirname, './node_modules/whatwg-fetch')
+				'whatwg-fetch': path.resolve(__dirname, './node_modules/whatwg-fetch'),
+				'moment': path.resolve(__dirname, './node_modules/moment'),
       }
     },
     optimization: {
