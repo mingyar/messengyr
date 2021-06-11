@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import ChatMessage from './chat-message';
 
@@ -31,5 +30,9 @@ class ChatContainer extends React.Component {
     )
   }
 }
+
+ChatContainer.defaultProps = {
+	messages: [],
+};
 
 export default ChatContainer;
