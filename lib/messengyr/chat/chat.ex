@@ -1,7 +1,15 @@
 defmodule Messengyr.Chat do
-
+  import Ecto.Query
   alias Messengyr.Chat.{Message, Room, RoomUser}
   alias Messengyr.Repo
+
+  def list_user_rooms(user) do
+    query = from r in Room,
+      join: u in assoc(r, :users),
+      where: u.id == ^user.id
+
+      query |> Repo.all |> preload_room_data
+  end
 
   def crate_room do
     room = %Room{}
