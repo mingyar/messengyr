@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import rooms from '../reducers';
 
 class MenuMessage extends React.Component {
   render() {
@@ -9,19 +10,19 @@ class MenuMessage extends React.Component {
     // Get the last element of the messages list:
     let lastMessage = room.messages.slice(-1)[0];
     let sentAt = moment.utc(lastMessage.sentAt).fromNow();
+		let activeClass = (room.isActive) ? 'active' : '';
 
-    return ( 
-      <li>
+    return (
+      <li className={activeClass}>
         <img className="avatar" src={counterpart.avatarURL} />
-
         <div className="profile-container">
           <p className="name">
           {counterpart.username}
           </p>
 
-          <date>
+          <div className="date">
             {sentAt}
-          </date>
+          </div>
 
           <p className="message">
             {lastMessage.text}
