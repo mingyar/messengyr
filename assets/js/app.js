@@ -23,16 +23,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import ChatContainer from "./components/chat-container";
 import MenuContainer from "./components/menu-container";
-
-const rooms = (state = [], action) => {
-	switch (action.type) {
-		case "SET_ROOMS":
-			return action.rooms;
-		
-		default:
-			return state;
-	}
-};
+import rooms from './reducers';
 
 const store = createStore(rooms);
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
+import { setRooms } from '../actions';
 
 class MenuContainer extends React.Component {  
 	
@@ -51,13 +52,6 @@ class MenuContainer extends React.Component {
     )
   }
 }
-
-let setRooms = (rooms) => {
-	return {
-		type: "SET_ROOMS",
-		rooms,
-	}
-};
 
 MenuContainer.defaultProps = {
 	rooms: [],
