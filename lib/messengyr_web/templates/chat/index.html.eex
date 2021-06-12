@@ -1,4 +1,6 @@
-<%= react_component("Components.App") %>
+<div id="app">
+
+</div>
 
 <script>
   window.jwtToken = "<%= jwt(@conn) %>"

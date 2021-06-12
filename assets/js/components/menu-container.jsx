@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
 
 class MenuContainer extends React.Component {  
@@ -34,5 +34,15 @@ class MenuContainer extends React.Component {
 MenuContainer.defaultProps = {
 	rooms: [],
 };
+
+const mapStateToProps = (state) => {
+	return {
+		rooms: state,
+	};
+};
+
+MenuContainer = connect(
+	mapStateToProps,
+)(MenuContainer);
 
 export default MenuContainer;

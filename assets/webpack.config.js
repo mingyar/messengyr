@@ -15,6 +15,8 @@ module.exports = (env, options) => {
         'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
 				'whatwg-fetch': path.resolve(__dirname, './node_modules/whatwg-fetch'),
 				'moment': path.resolve(__dirname, './node_modules/moment'),
+				'redux': path.resolve(__dirname, './node_modules/redux'),
+				'react-redux': path.resolve(__dirname, './node_modules/react-redux'),
       }
     },
     optimization: {

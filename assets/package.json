@@ -13,6 +13,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-phoenix": "file:../deps/react_phoenix",
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
