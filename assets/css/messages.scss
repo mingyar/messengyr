@@ -61,7 +61,7 @@
 
         .profile-container {
           display: inline-block;
-          width: calc(100% - 68px);
+          width: calc(100% - 5px);
           vertical-align: top;
         }
 
@@ -110,7 +110,7 @@
           margin-top: 3px;
         }
 
-        date {
+        .date {
           font-size: 14px;
           color: #3295F4;
           letter-spacing: 0px;

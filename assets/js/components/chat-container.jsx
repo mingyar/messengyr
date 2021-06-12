@@ -1,6 +1,6 @@
 import React from 'react';
-
 import ChatMessage from './chat-message';
+import { connect } from 'react-redux';
 
 class ChatContainer extends React.Component {
   render() {
@@ -34,5 +34,22 @@ class ChatContainer extends React.Component {
 ChatContainer.defaultProps = {
 	messages: [],
 };
+
+const mapStateToProps = (state) => {
+  // Get only the active room:
+  let activeRoom = state.filter((room) => {
+    return room.isActive;
+  })[0];
+
+  return {
+    // If there is an active room, get its messages!
+    // Otherwise, just return an empty list
+    messages: (activeRoom) ? activeRoom.messages : [],
+  }
+};
+
+ChatContainer = connect(
+  mapStateToProps,
+)(ChatContainer);
 
 export default ChatContainer;

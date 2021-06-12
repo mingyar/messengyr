@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
-import { setRooms } from '../actions';
+import { setRooms, selectRoom } from '../actions';
 
 class MenuContainer extends React.Component {  
 	
@@ -16,8 +16,13 @@ class MenuContainer extends React.Component {
 		})
 		.then((response) => {
 			let rooms = response.rooms;
-
 			this.props.setRooms(rooms);
+
+			let firstRoom = rooms[0];
+
+			if (firstRoom) {
+				this.props.selectRoom(firstRoom.id);
+			}
 		})
 		.catch((err) => {
 			console.error(err);
@@ -65,6 +70,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
 	setRooms,
+	selectRoom,
 };
 
 MenuContainer = connect(
