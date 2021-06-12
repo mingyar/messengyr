@@ -3,6 +3,27 @@ import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
 
 class MenuContainer extends React.Component {  
+	
+	componentDidMount() {
+		fetch('/api/rooms', {
+			headers: {
+				"Authorization": "Bearer " + window.jwtToken,
+			},
+		})
+		.then((response) => {
+			return response.json();
+		})
+		.then((response) => {
+			let rooms = response.rooms;
+
+			this.props.setRooms(rooms);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}
+
+
   render() {
 
     let rooms = this.props.rooms.map((room) => {
@@ -31,6 +52,13 @@ class MenuContainer extends React.Component {
   }
 }
 
+let setRooms = (rooms) => {
+	return {
+		type: "SET_ROOMS",
+		rooms,
+	}
+};
+
 MenuContainer.defaultProps = {
 	rooms: [],
 };
@@ -41,8 +69,13 @@ const mapStateToProps = (state) => {
 	};
 };
 
+const mapDispatchToProps = {
+	setRooms,
+};
+
 MenuContainer = connect(
 	mapStateToProps,
+	mapDispatchToProps,
 )(MenuContainer);
 
 export default MenuContainer;
