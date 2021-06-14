@@ -43,4 +43,8 @@ defmodule Messengyr.Chat do
     room |> Repo.preload(:messages) |> Repo.preload(:users)
   end
 
+  def create_room_with_counterpart(me, counterpart_username) do
+    counterpart = Repo.get_by!(User, username: counterpart_username)
+    IO.inspect counterpart
+  end
 end
