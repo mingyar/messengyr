@@ -3,7 +3,12 @@ import React from 'react';
 import MenuMessage from './menu-message';
 
 class MenuContainer extends React.Component {  
-  render() {
+  createRoom() {
+		let username = prompt("Enter a username");
+		console.log(username);
+	}
+	
+	render() {
 
     let rooms = this.props.rooms.map((room) => {
       return (
@@ -19,7 +24,10 @@ class MenuContainer extends React.Component {
 
         <div className="header">
           <h3>Messages</h3>
-          <button className="compose"></button>
+          <button 
+						className="compose"
+						onClick={this.createRoom}
+					></button>
         </div>
 
         <ul>
