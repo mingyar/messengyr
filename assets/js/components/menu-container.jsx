@@ -29,6 +29,10 @@ class MenuContainer extends React.Component {
 		});
 	}
 
+	createRoom() {
+		let username = prompt("Enter a username");
+		console.log(username);
+	}
 
   render() {
 
@@ -46,7 +50,10 @@ class MenuContainer extends React.Component {
 
         <div className="header">
           <h3>Messages</h3>
-          <button className="compose"></button>
+          <button 
+						className="compose"
+						onClick={this.createRoom}
+					></button>
         </div>
 
         <ul>

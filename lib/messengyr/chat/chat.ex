@@ -2,6 +2,7 @@ defmodule Messengyr.Chat do
   import Ecto.Query
   alias Messengyr.Chat.{Message, Room, RoomUser}
   alias Messengyr.Repo
+  alias Messengyr.Accounts.User
 
   def list_user_rooms(user) do
     query = from r in Room,
@@ -41,6 +42,11 @@ defmodule Messengyr.Chat do
 
   defp preload_room_data(room) do
     room |> Repo.preload(:messages) |> Repo.preload(:users)
+  end
+
+  def create_room_with_counterpart(me, counterpart_username) do
+    counterpart = Repo.get_by!(User, username: counterpart_username)
+    counterpart |> IO.inspect
   end
 
 end
