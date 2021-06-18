@@ -9,7 +9,15 @@ class MenuMessage extends React.Component {
 
     // Get the last element of the messages list:
     let lastMessage = room.messages.slice(-1)[0];
-    let sentAt = moment.utc(lastMessage.sentAt).fromNow();
+
+		let sentAt;
+		let text;
+
+		if (lastMessage) {
+    	sentAt = moment.utc(lastMessage.sentAt).fromNow();
+			text = lastMessage.text;
+		}
+
 		let activeClass = (room.isActive) ? 'active' : '';
 
     return (
@@ -25,7 +33,7 @@ class MenuMessage extends React.Component {
           </div>
 
           <p className="message">
-            {lastMessage.text}
+            {text}
           </p>
         </div>
 
