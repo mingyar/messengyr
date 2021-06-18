@@ -12,7 +12,7 @@
 alias Messengyr.{Chat, Repo, Accounts}
 alias Messengyr.Accounts.User
 
-{:ok, room} = Chat.crate_room()
+{:ok, room} = Chat.create_room()
 
 me = Repo.one(User)
 
