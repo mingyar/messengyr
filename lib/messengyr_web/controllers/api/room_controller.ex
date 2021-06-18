@@ -22,7 +22,7 @@ defmodule MessengyrWeb.RoomController do
     })
   end
 
-  def create(conn, %{"couterpartUsername" => counterpart_username}) do
+  def create(conn, %{"counterpartUsername" => counterpart_username}) do
     user = Guardian.Plug.current_resource(conn)
 
     Chat.create_room_with_counterpart(user, counterpart_username)

@@ -12,7 +12,7 @@ defmodule Messengyr.Chat do
       query |> Repo.all |> preload_room_data
   end
 
-  def crate_room do
+  def create_room do
     room = %Room{}
     Repo.insert(room)
   end
@@ -46,7 +46,24 @@ defmodule Messengyr.Chat do
 
   def create_room_with_counterpart(me, counterpart_username) do
     counterpart = Repo.get_by!(User, username: counterpart_username)
-    counterpart |> IO.inspect
+    members = [counterpart, me]
+
+    with {:ok, room} <- create_room() do
+      add_room_users(room, members)
+    end
+  end
+
+  defp add_room_users(room, []) do
+    {:ok, room}
+  end
+
+  defp add_room_users(room, [first_user | other_users]) do
+    case add_room_user(room, first_user) do
+      {:ok, _} ->
+        add_room_users(room, other_users)
+      _ ->
+      {:error, "Failed to add user to room!"}
+    end
   end
 
 end

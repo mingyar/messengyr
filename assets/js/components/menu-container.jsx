@@ -31,7 +31,26 @@ class MenuContainer extends React.Component {
 
 	createRoom() {
 		let username = prompt("Enter a username");
-		console.log(username);
+		
+		let data = new FormData();
+		data.append("counterpartUsername", username);
+
+		fetch('/api/rooms', {
+			method: "POST",
+			headers: {
+				"Authorization": "Bearer " + window.jwtToken,
+			},
+			body: data,
+		})
+		.then((response) => {
+			return response.json();
+		})
+		.then((response) => {
+			console.log(response);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 	}
 
   render() {
