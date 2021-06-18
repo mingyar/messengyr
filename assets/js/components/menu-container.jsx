@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
-import { setRooms, selectRoom } from '../actions';
+import { setRooms, selectRoom, addRoom } from '../actions';
 
 class MenuContainer extends React.Component {  
 	
@@ -46,12 +46,13 @@ class MenuContainer extends React.Component {
 			return response.json();
 		})
 		.then((response) => {
-			console.log(response);
+			let room = response.room;
+			this.props.addRoom(room);
 		})
 		.catch((err) => {
 			console.error(err);
 		});
-	}
+	};
 
   render() {
 
@@ -79,7 +80,6 @@ class MenuContainer extends React.Component {
         />
       );
     });
-
     return (
       <div className="menu">
 
@@ -87,12 +87,12 @@ class MenuContainer extends React.Component {
           <h3>Messages</h3>
           <button 
 						className="compose"
-						onClick={this.createRoom}
+						onClick={this.createRoom.bind(this)}
 					></button>
         </div>
 
         <ul>
-            {rooms}
+          {rooms}
         </ul>
 
       </div>
@@ -113,6 +113,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
 	setRooms,
 	selectRoom,
+	addRoom,
 };
 
 MenuContainer = connect(
