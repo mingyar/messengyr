@@ -55,7 +55,23 @@ class MenuContainer extends React.Component {
 
   render() {
 
-    let rooms = this.props.rooms.map((room) => {
+		let getRoomDate = (room) => {
+			let date;
+
+			if (room.lastMessage) {
+				date = room.lastMessage.sentAt;
+			} else {
+				date = room.createdAt;
+			}
+
+			return new Date(date);
+		}
+
+		let rooms = this.props.rooms.sort((a, b) => {
+			return getRoomDate(b) - getRoomDate(a);
+		});
+
+    rooms = rooms.map((room) => {
       return (
         <MenuMessage
           key={room.id}

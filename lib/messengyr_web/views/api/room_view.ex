@@ -22,6 +22,7 @@ defmodule MessengyrWeb.RoomView do
       id: room.id,
       counterpart: user_jason(counterpart),
       messages: Enum.map(room.messages, fn(message) -> message_json(message, %{me: me}) end),
+      createdAt: room.inserted_at,
     }
   end
 
