@@ -31,12 +31,47 @@ class MenuContainer extends React.Component {
 
 	createRoom() {
 		let username = prompt("Enter a username");
-		console.log(username);
+		
+		let data = new FormData();
+		data.append("counterpartUsername", username);
+
+		fetch('/api/rooms', {
+			method: "POST",
+			headers: {
+				"Authorization": "Bearer " + window.jwtToken,
+			},
+			body: data,
+		})
+		.then((response) => {
+			return response.json();
+		})
+		.then((response) => {
+			console.log(response);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 	}
 
   render() {
 
-    let rooms = this.props.rooms.map((room) => {
+		let getRoomDate = (room) => {
+			let date;
+
+			if (room.lastMessage) {
+				date = room.lastMessage.sentAt;
+			} else {
+				date = room.createdAt;
+			}
+
+			return new Date(date);
+		}
+
+		let rooms = this.props.rooms.sort((a, b) => {
+			return getRoomDate(b) - getRoomDate(a);
+		});
+
+    rooms = rooms.map((room) => {
       return (
         <MenuMessage
           key={room.id}
