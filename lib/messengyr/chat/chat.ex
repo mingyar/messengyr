@@ -54,7 +54,7 @@ defmodule Messengyr.Chat do
   end
 
   defp add_room_users(room, []) do
-    {:ok, room}
+    {:ok, room |> preload_room_data}
   end
 
   defp add_room_users(room, [first_user | other_users]) do
