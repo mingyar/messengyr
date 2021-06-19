@@ -2,6 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
 import { setRooms, selectRoom, addRoom } from '../actions';
+import socket from '../socket';
+
+let channel = socket.channel('room:lobby');
+
+channel.join()
+.receive('ok', resp => {
+	console.log('Joined the lobby!');
+});
 
 class MenuContainer extends React.Component {  
 	
