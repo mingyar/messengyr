@@ -8,7 +8,13 @@ let channel = socket.channel('room:lobby');
 
 channel.join()
 .receive('ok', resp => {
-	console.log('Joined the lobby!');
+	console.info('Joined the lobby!');
+
+	channel.push('shout');
+
+	channel.on('shout', () => {
+		console.info("A user just shouted the lobby!")
+	});
 });
 
 class MenuContainer extends React.Component {  
