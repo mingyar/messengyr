@@ -4,18 +4,21 @@ import MenuMessage from './menu-message';
 import { setRooms, selectRoom, addRoom } from '../actions';
 import socket from '../socket';
 
-let channel = socket.channel('room:lobby');
+let getRoomChannel = (roomId) => {
+	let channel = socket.channel(`room:${roomId}`);
 
-channel.join()
-.receive('ok', resp => {
-	console.info('Joined the lobby!');
-
-	channel.push('shout');
-
-	channel.on('shout', () => {
-		console.info("A user just shouted the lobby!")
+	channel.join()
+	.receive("ok", resp => {
+		console.info(`Joined room ${roomId} successfully`, resp);
+	})
+	.receive("error", resp => {
+		console.error(`Unable to join ${roomId}`, resp);
 	});
-});
+
+	return channel;
+};
+
+getRoomChannel(999);
 
 class MenuContainer extends React.Component {  
 	
@@ -30,6 +33,11 @@ class MenuContainer extends React.Component {
 		})
 		.then((response) => {
 			let rooms = response.rooms;
+
+			rooms.forEach(room => {
+				room.channel = getRoomChannel(room.id);
+			});
+
 			this.props.setRooms(rooms);
 
 			let firstRoom = rooms[0];
