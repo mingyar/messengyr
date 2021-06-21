@@ -18,6 +18,7 @@ let getRoomChannel = (roomId) => {
 	return channel;
 };
 
+getRoomChannel(999);
 
 class MenuContainer extends React.Component {  
 	

@@ -40,10 +40,6 @@ defmodule Messengyr.Chat do
     Repo.all(Room) |> preload_room_data
   end
 
-  defp preload_room_data(room) do
-    room |> Repo.preload(:messages) |> Repo.preload(:users)
-  end
-
   def create_room_with_counterpart(me, counterpart_username) do
     counterpart = Repo.get_by!(User, username: counterpart_username)
     members = [counterpart, me]
@@ -51,6 +47,24 @@ defmodule Messengyr.Chat do
     with {:ok, room} <- create_room() do
       add_room_users(room, members)
     end
+  end
+
+  def get_room(id) do
+    Room |> Repo.get(id)
+  end
+
+  def room_has_user?(room, user) do
+    query = from ru in RoomUser,
+      where: ru.room_id == ^room.id and ru.user_id == ^user.id
+
+      case Repo.one(query) do
+        %RoomUser{} -> true
+        _ -> false
+      end
+  end
+
+  defp preload_room_data(room) do
+    room |> Repo.preload(:messages) |> Repo.preload(:users)
   end
 
   defp add_room_users(room, []) do
