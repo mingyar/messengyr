@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
-import { setRooms, selectRoom, addRoom } from '../actions';
+import { setRooms, selectRoom, addRoom, addMessage } from '../actions';
 import socket from '../socket';
 
 let getRoomChannel = (roomId) => {
@@ -19,7 +19,7 @@ let getRoomChannel = (roomId) => {
 };
 
 class MenuContainer extends React.Component {  
-	
+
 	componentDidMount() {
 		fetch('/api/rooms', {
 			headers: {
@@ -50,11 +50,28 @@ class MenuContainer extends React.Component {
 		});
 	}
 
+	getNewMessage(room, messageId) {
+		fetch(`/api/messages/${messageId}`, {
+			headers: {
+				"Authorization": "Bearer " + window.jwtToken,
+			},
+		})
+		.then((response) => {
+			return response.json();
+		})
+		.then((response) => {
+			this.props.addMessage(response.message, room.id);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}
+	
 	listenToNewMessages(room) {
 		room.channel.on('message:new', resp => {
 			let messageId = resp.messageId;
 
-			console.log(`Message with ID ${messageId} was posted!`);
+			this.getNewMessage(room, messageId);
 		});
 	}
 
@@ -143,6 +160,7 @@ const mapDispatchToProps = {
 	setRooms,
 	selectRoom,
 	addRoom,
+	addMessage,
 };
 
 MenuContainer = connect(

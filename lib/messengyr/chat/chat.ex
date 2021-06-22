@@ -63,6 +63,10 @@ defmodule Messengyr.Chat do
       end
   end
 
+  def get_message(id) do
+    Message |> Repo.get(id) |> Repo.preload(:room)
+  end
+
   defp preload_room_data(room) do
     room |> Repo.preload(:messages) |> Repo.preload(:users)
   end

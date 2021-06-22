@@ -18,3 +18,11 @@ export function addRoom(room) {
 		room,
 	}
 };
+
+export function addMessage(message, roomId) {
+	return {
+		type: "ADD_MESSAGE",
+		message,
+		roomId
+	}
+};
