@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MenuMessage from './menu-message';
-import { setRooms, selectRoom, addRoom } from '../actions';
+import { setRooms, selectRoom, addRoom, addMessage } from '../actions';
 import socket from '../socket';
 
 let getRoomChannel = (roomId) => {
@@ -19,7 +19,7 @@ let getRoomChannel = (roomId) => {
 };
 
 class MenuContainer extends React.Component {  
-	
+
 	componentDidMount() {
 		fetch('/api/rooms', {
 			headers: {
@@ -57,11 +57,10 @@ class MenuContainer extends React.Component {
 			},
 		})
 		.then((response) => {
-			console.log(response);
 			return response.json();
 		})
 		.then((response) => {
-			console.log(response);
+			this.props.addMessage(response.message, room.id);
 		})
 		.catch((err) => {
 			console.error(err);
@@ -161,6 +160,7 @@ const mapDispatchToProps = {
 	setRooms,
 	selectRoom,
 	addRoom,
+	addMessage,
 };
 
 MenuContainer = connect(

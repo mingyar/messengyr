@@ -1,3 +1,16 @@
+export const messages = (state = [], action) => {
+	switch (action.type) {
+		case "ADD_MESSAGE":
+			return [
+				...state,
+				action.message,
+			];
+
+		default:
+			return state;
+	}
+};
+
 let room = (state, action) => {
 	switch(action.type) {
 		
@@ -8,14 +21,24 @@ let room = (state, action) => {
 				isActive,
 			});
 
+			case "ADD_MESSAGE":
+				if (state.id !== action.roomId){
+					return state;
+				}
+
+				return Object.assign({}, state, {
+					messages: messages(state.messages, action)
+				});
+
 			default:
 				return state;
+
 	}
 };
 
 const rooms = (state = [], action) => {
   switch (action.type) {
-    
+
 		case "SET_ROOMS":
       return action.rooms;
 		
@@ -29,6 +52,11 @@ const rooms = (state = [], action) => {
 				action.room, 
 				...state,
 			];
+
+		case "ADD_MESSAGE":
+			return state.map(r => {
+				return room(r, action);
+			});
 
     default:
       return state;
