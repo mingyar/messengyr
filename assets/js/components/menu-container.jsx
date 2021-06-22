@@ -18,8 +18,6 @@ let getRoomChannel = (roomId) => {
 	return channel;
 };
 
-getRoomChannel(999);
-
 class MenuContainer extends React.Component {  
 	
 	componentDidMount() {
@@ -36,6 +34,7 @@ class MenuContainer extends React.Component {
 
 			rooms.forEach(room => {
 				room.channel = getRoomChannel(room.id);
+				this.listenToNewMessages(room);
 			});
 
 			this.props.setRooms(rooms);
@@ -48,6 +47,14 @@ class MenuContainer extends React.Component {
 		})
 		.catch((err) => {
 			console.error(err);
+		});
+	}
+
+	listenToNewMessages(room) {
+		room.channel.on('message:new', resp => {
+			let messageId = resp.messageId;
+
+			console.log(`Message with ID ${messageId} was posted!`);
 		});
 	}
 

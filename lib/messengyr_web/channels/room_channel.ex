@@ -18,4 +18,27 @@ defmodule MessengyrWeb.RoomChannel do
     end
   end
 
+  def handle_in("message:new", %{"text" => text, "room_id" => room_id}, socket) do
+    me = socket.assigns.current_user
+    room = Chat.get_room(room_id)
+
+    with {:ok, message} <- Chat.add_message(%{
+      room: room,
+      user: me,
+      text: text,
+    }) do
+      IO.puts "Added message!"
+
+      json = %{
+        messageId: message.id,
+      }
+
+      broadcast! socket, "message:new", json
+
+      {:reply, :ok, socket}
+    else
+      _ -> {:error, %{reason: "Couldn't add message!"}}
+    end
+  end
+
 end
