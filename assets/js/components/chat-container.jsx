@@ -2,6 +2,14 @@ import React from 'react';
 import ChatMessage from './chat-message';
 import { connect } from 'react-redux';
 
+function scrollToBotton() {
+	let chatEL = document.querySelector('.chat ul');
+
+	if (!chatEL) return false;
+
+	chatEL.scrollTop = chatEL.scrollHeight;
+}
+
 class ChatContainer extends React.Component {
 
 	constructor(props) {
@@ -35,6 +43,12 @@ class ChatContainer extends React.Component {
 		});
 	}
 
+	handleKeyPress(e) {
+		if (e.key === "Enter") {
+			this.sendMessage();
+		}
+	}
+
   render() {
     
     let messages = this.props.messages.map((message) => {
@@ -58,6 +72,7 @@ class ChatContainer extends React.Component {
 						placeholder="Type a message..."
 						value={this.state.draft}
 						onChange={this.updateDraft.bind(this)}
+						onKeyPress={this.handleKeyPress.bind(this)}
 					/>
           <button onClick={this.sendMessage.bind(this)}>
 						Send
@@ -67,6 +82,25 @@ class ChatContainer extends React.Component {
       </div>
     )
   }
+
+	/*
+   * Check if a new room is selected or if a message is added.
+   * If it is, scroll down!
+   */
+	componentDidUpdate(prevProps) {
+		let prevRoomId = prevProps.room && prevProps.room.id;
+		let newRoomId = this.props.room && this.props.room.id;
+
+		let prevNumMessages = prevProps.messages.length;
+		let newNumMessages = this.props.messages.length;
+
+		let changedRoom = (prevRoomId !== newRoomId);
+		let addedMessage = (prevNumMessages !== newNumMessages);
+
+		if (changedRoom || addedMessage){
+			scrollToBotton();
+		}
+	}
 }
 
 ChatContainer.defaultProps = {
