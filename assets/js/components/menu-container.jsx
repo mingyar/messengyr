@@ -50,11 +50,29 @@ class MenuContainer extends React.Component {
 		});
 	}
 
+	getNewMessage(room, messageId) {
+		fetch(`/api/messages/${messageId}`, {
+			headers: {
+				"Authorization": "Bearer " + window.jwtToken,
+			},
+		})
+		.then((response) => {
+			console.log(response);
+			return response.json();
+		})
+		.then((response) => {
+			console.log(response);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+	}
+	
 	listenToNewMessages(room) {
 		room.channel.on('message:new', resp => {
 			let messageId = resp.messageId;
 
-			console.log(`Message with ID ${messageId} was posted!`);
+			this.getNewMessage(room, messageId);
 		});
 	}
 
