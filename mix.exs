@@ -47,7 +47,8 @@ defmodule Messengyr.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:bcrypt_elixir, "~> 2.0"},
       {:guardian, "~> 2.1"},
-      {:react_phoenix, "~> 1.2"}
+      {:react_phoenix, "~> 1.2"},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
     ]
   end
 
