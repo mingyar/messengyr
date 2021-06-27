@@ -16,7 +16,6 @@ import "../css/messages.scss";
 //
 import "phoenix_html";
 import ReactDOM from "react-dom";
-import "react-phoenix";
 import React from "react";
 import 'whatwg-fetch';
 import { createStore } from 'redux';
