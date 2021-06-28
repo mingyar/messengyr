@@ -11,8 +11,8 @@ Built with <a href="http://elixir-lang.org">Elixir</a> and the <a href="http://w
 </p>
 
 <p align="center">
- <a href="https://messengyr.herokuapp.com">
- <strong>DEMO</strong>
+ <a href="https://messengyr-app.herokuapp.com/">
+ <strong>View demo</strong>
  </a>
  <br><br>
  Want to learn how to build this?
