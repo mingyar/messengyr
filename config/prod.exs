@@ -23,7 +23,7 @@ config :logger, level: :info
 config :messengyr, Messengyr.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  pool_size: 20,
+  pool_size: 2,
   ssl: true
 
 config :messengyr, Messengyr.Auth.Guardian,

@@ -26,7 +26,7 @@ defmodule MessengyrWeb.PageController do
       {:ok, _user} ->
         conn
         |> put_flash(:info, "User created succesfully")
-        |> redirect(to: "/")
+        |> redirect(to: "/login")
 
       {:error, user_changeset} ->
         conn
@@ -42,7 +42,7 @@ defmodule MessengyrWeb.PageController do
       conn
       |> Guardian.Plug.sign_in(user)
       |> put_flash(:info, "Logged in as #{username}!")
-      |> render("login.html")
+      |> redirect(to: "/messages")
 
     {:error, message} ->
       conn
