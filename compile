@@ -1,4 +1,4 @@
 # app_root/compile
 cd $phoenix_dir
-npm --prefix ./assets run build
+npm run deploy --prefix ./assets
 mix "${phoenix_ex}.digest" #use the ${phoenix_ex} variable instead of hardcoding phx or phoenix
