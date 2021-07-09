@@ -2,6 +2,9 @@
    <%= link " ", class: "logo", to: Routes.page_path(@conn, :index) %>
 
    <%= if logged_in?(@conn) do%>
+     <%= if (@conn.request_path == "/") do %>
+      <%= link ">", to: "/messages" %>
+     <% end %>
      <%= link "Log out", to: Routes.page_path(@conn, :logout) %>
      <div class="profile-container">
        <img src=<%= avatar(@conn) %> />
