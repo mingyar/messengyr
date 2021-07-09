@@ -1,5 +1,10 @@
 <header>
+  <%= if logged_in?(@conn) do%>
+   <%= link " ", class: "logo", to: "/messages" %>
+  <% else %>
    <%= link " ", class: "logo", to: Routes.page_path(@conn, :index) %>
+  <% end %>
+
 
    <%= if logged_in?(@conn) do%>
      <%= if (@conn.request_path == "/") do %>
