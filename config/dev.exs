@@ -25,7 +25,7 @@ config :messengyr, MessengyrWeb.Endpoint,
       "webpack",
       "--mode",
       "development",
-      "--watch-stdin",
+      "--watch-options-stdin",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

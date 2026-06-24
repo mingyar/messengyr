@@ -48,7 +48,8 @@ defmodule Messengyr.MixProject do
       {:plug_cowboy, "~> 2.8"},
       {:bcrypt_elixir, "~> 3.3"},
       {:guardian, "~> 2.4"},
-      {:ex_doc, "~> 0.37", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.37", only: :dev, runtime: false},
+      {:tidewave, "~> 0.5", only: :dev}
     ]
   end
 
