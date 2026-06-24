@@ -10,6 +10,5 @@ defmodule Messengyr.Repo.Migrations.CreateMessages do
 
       timestamps()
     end
-
   end
 end

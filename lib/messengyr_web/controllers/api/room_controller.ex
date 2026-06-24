@@ -8,7 +8,8 @@ defmodule MessengyrWeb.RoomController do
   def auth_error(conn, {_type, _reason}, _opts) do
     conn
     |> put_status(401)
-    |> render(ErrorView, "error.json", message: "You are not authenticated.")
+    |> put_view(ErrorView)
+    |> render("error.json", message: "You are not authenticated.")
   end
 
   def index(conn, _params) do
@@ -18,7 +19,7 @@ defmodule MessengyrWeb.RoomController do
 
     render(conn, "index.json", %{
       rooms: rooms,
-      me: user,
+      me: user
     })
   end
 
@@ -28,9 +29,8 @@ defmodule MessengyrWeb.RoomController do
     with {:ok, room} <- Chat.create_room_with_counterpart(user, counterpart_username) do
       render(conn, "show.json", %{
         room: room,
-        me: user,
+        me: user
       })
     end
   end
-
 end

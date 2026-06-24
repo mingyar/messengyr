@@ -3,9 +3,9 @@ defmodule Messengyr.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :email, :string, unique: true
+    field :email, :string
     field :encrypted_password, :string
-    field :username, :string, unique: true
+    field :username, :string
     field :password, :string, virtual: true
 
     timestamps()

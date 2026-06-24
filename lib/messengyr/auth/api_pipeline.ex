@@ -3,6 +3,6 @@ defmodule Messengyr.Auth.ApiPipeline do
     otp_app: :messengyr,
     module: Messengyr.Auth.Guardian
 
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+  plug Guardian.Plug.VerifyHeader, scheme: "Bearer"
   plug Guardian.Plug.LoadResource, allow_blank: true
 end

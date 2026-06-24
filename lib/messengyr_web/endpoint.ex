@@ -1,20 +1,9 @@
 defmodule MessengyrWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :messengyr
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  @session_options [
-    store: :cookie,
-    key: "_messengyr_key",
-    signing_salt: "yoqqouR8"
-  ]
-
   socket "/socket", MessengyrWeb.UserSocket,
     websocket: [timeout: 45_000],
     longpoll: false
-
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -25,6 +14,11 @@ defmodule MessengyrWeb.Endpoint do
     from: :messengyr,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
+
+  # Tidewave - AI coding agent integration for Phoenix
+  if Mix.env() == :dev do
+    plug Tidewave
+  end
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -49,6 +43,6 @@ defmodule MessengyrWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-  plug Plug.Session, @session_options
+  plug Plug.Session, Application.compile_env(:messengyr, MessengyrWeb.Endpoint)[:session]
   plug MessengyrWeb.Router
 end

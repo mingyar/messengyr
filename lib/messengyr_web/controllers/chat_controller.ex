@@ -5,13 +5,12 @@ defmodule MessengyrWeb.ChatController do
   plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
 
   def index(conn, _params) do
-    render conn
+    render(conn)
   end
 
   def auth_error(conn, {_type, _reason}, _opts) do
     conn
     |> put_flash(:error, "You need to log in to view your messages.")
-    |> redirect(to: "/")
+    |> redirect(to: ~p"/")
   end
-
 end

@@ -15,9 +15,8 @@ import "../css/messages.scss";
 //     import socket from "./socket"
 //
 import "phoenix_html";
-import ReactDOM from "react-dom";
 import React from "react";
-import 'whatwg-fetch';
+import { createRoot } from "react-dom/client";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import ChatContainer from "./components/chat-container";
@@ -27,14 +26,14 @@ import rooms from './reducers';
 const store = createStore(rooms);
 
 class App extends React.Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		this.state = {
-			rooms: [],
-			messages: [],
-		};
-	}
+    this.state = {
+      rooms: [],
+      messages: [],
+    };
+  }
 
   render() {
     // Pass the relevant data as props:
@@ -48,14 +47,14 @@ class App extends React.Component {
 }
 
 window.Components = {
-  App, 
-  MenuContainer, 
-  ChatContainer
+  App,
+  MenuContainer,
+  ChatContainer,
 }
 
-ReactDOM.render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.getElementById('app'),
+const root = createRoot(document.getElementById('app'));
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
 );

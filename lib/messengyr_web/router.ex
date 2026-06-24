@@ -4,12 +4,14 @@ defmodule MessengyrWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+    plug :put_root_layout, {MessengyrWeb.LayoutView, :app}
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+
     plug Guardian.Plug.Pipeline,
-          module: Messengyr.Guardian,
-          error_handler: MessengyrWeb.ChatController
+      module: Messengyr.Auth.Guardian,
+      error_handler: MessengyrWeb.ChatController
   end
 
   pipeline :browser_session do

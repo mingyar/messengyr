@@ -19,11 +19,11 @@ defmodule MessengyrWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: MessengyrWeb
+      use Phoenix.Controller, formats: [html: "View", json: "View"]
 
       import Plug.Conn
       import MessengyrWeb.Gettext
-      alias MessengyrWeb.Router.Helpers, as: Routes
+      unquote(verified_routes())
     end
   end
 
@@ -44,7 +44,7 @@ defmodule MessengyrWeb do
 
   def router do
     quote do
-      use Phoenix.Router
+      use Phoenix.Router, helpers: false
 
       import Plug.Conn
       import Phoenix.Controller
@@ -68,7 +68,13 @@ defmodule MessengyrWeb do
 
       import MessengyrWeb.ErrorHelpers
       import MessengyrWeb.Gettext
-      alias MessengyrWeb.Router.Helpers, as: Routes
+      unquote(verified_routes())
+    end
+  end
+
+  defp verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes, endpoint: MessengyrWeb.Endpoint, router: MessengyrWeb.Router
     end
   end
 

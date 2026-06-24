@@ -5,9 +5,9 @@ defmodule Messengyr.MixProject do
     [
       app: :messengyr,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.18",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -33,21 +33,23 @@ defmodule Messengyr.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.7"},
-      {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.4"},
-      {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:bcrypt_elixir, "~> 2.0"},
-      {:guardian, "~> 2.1"},
-      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:phoenix, "~> 1.8.8"},
+      {:phoenix_ecto, "~> 4.7"},
+      {:ecto_sql, "~> 3.14"},
+      {:postgrex, ">= 0.22.0"},
+      {:phoenix_view, "~> 2.0"},
+      {:phoenix_html, "~> 3.3"},
+      {:phoenix_live_reload, "~> 1.6", only: :dev},
+      {:phoenix_live_dashboard, "~> 0.8"},
+      {:telemetry_metrics, "~> 1.0"},
+      {:telemetry_poller, "~> 1.1"},
+      {:gettext, "~> 0.26"},
+      {:jason, "~> 1.4"},
+      {:plug_cowboy, "~> 2.8"},
+      {:bcrypt_elixir, "~> 3.3"},
+      {:guardian, "~> 2.4"},
+      {:ex_doc, "~> 0.37", only: :dev, runtime: false},
+      {:tidewave, "~> 0.5", only: :dev}
     ]
   end
 
@@ -65,5 +67,4 @@ defmodule Messengyr.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
-
 end

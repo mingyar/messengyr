@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :messengyr,
   ecto_repos: [Messengyr.Repo]
@@ -16,7 +16,14 @@ config :messengyr, MessengyrWeb.Endpoint,
   secret_key_base: "qWetP8ZBUJH0KWGM8Zqy9Ev48Nqi9i1RfH0fMknMLtxGCyQAjwKei7r+TO+QpuJ7",
   render_errors: [view: MessengyrWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Messengyr.PubSub,
-  live_view: [signing_salt: "hIKyiFxV"]
+  session: [
+    store: :cookie,
+    key: "_messengyr_key",
+    signing_salt: "yoqqouR8"
+  ],
+  live_view: [
+    signing_salt: "hIKyiFxV"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

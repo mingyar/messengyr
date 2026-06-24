@@ -2,7 +2,7 @@
 
     <h1>Log in to Messenger</h1>
 
-    <%= form_for @conn, Routes.page_path(@conn, :login_user), [as: :credentials], fn f -> %>
+    <%= form_for @conn, ~p"/login", [as: :credentials], fn f -> %>
 
       <%= text_input f, :username, placeholder: "Username" %>
 

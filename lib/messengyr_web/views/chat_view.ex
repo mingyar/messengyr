@@ -4,5 +4,4 @@ defmodule MessengyrWeb.ChatView do
   def jwt(conn) do
     Guardian.Plug.current_token(conn)
   end
-
 end

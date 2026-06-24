@@ -12,7 +12,7 @@ defmodule MessengyrWeb.MessageView do
       id: message.id,
       text: message.text,
       outgoing: outgoing?(message, me),
-      sentAt: message.inserted_at,
+      sentAt: message.inserted_at
     }
   end
 

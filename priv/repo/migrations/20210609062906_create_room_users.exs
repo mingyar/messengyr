@@ -3,7 +3,6 @@ defmodule Messengyr.Repo.Migrations.CreateRoomUsers do
 
   def change do
     create table(:room_users) do
-
       add :room_id, references(:rooms)
       add :user_id, references(:users)
 
@@ -11,6 +10,5 @@ defmodule Messengyr.Repo.Migrations.CreateRoomUsers do
     end
 
     create unique_index(:room_users, [:room_id, :user_id])
-
   end
 end

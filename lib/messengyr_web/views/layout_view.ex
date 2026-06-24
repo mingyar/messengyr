@@ -17,7 +17,7 @@ defmodule MessengyrWeb.LayoutView do
 
     %{email: email} = user
 
-    hash_email = :crypto.hash(:md5, email) |> Base.encode16 |> String.downcase
+    hash_email = :crypto.hash(:md5, email) |> Base.encode16() |> String.downcase()
 
     "http://www.gravatar.com/avatar/#{hash_email}"
   end

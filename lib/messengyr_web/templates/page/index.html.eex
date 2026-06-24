@@ -6,7 +6,7 @@
   <div class="action-boxes">
 
     <div class="card login">
-      <%= form_for @conn, Routes.page_path(@conn, :login_user), [as: :credentials], fn f -> %>
+      <%= form_for @conn, ~p"/login", [as: :credentials], fn f -> %>
 
         <%= text_input f, :username, placeholder: "Username" %>
         <%= text_input f, :password, placeholder: "Password", type: "password" %>
@@ -24,7 +24,7 @@
         Sign up!
       </h5>
 
-    <%= form_for @user_changeset, Routes.page_path(@conn, :create_user), fn f -> %>
+    <%= form_for @user_changeset, ~p"/signup", fn f -> %>
 
       <%= text_input f, :email, placeholder: "Email" %>
       <%= text_input f, :username, placeholder: "Username" %>
