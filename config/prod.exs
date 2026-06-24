@@ -26,8 +26,7 @@ config :messengyr, Messengyr.Repo,
   pool_size: 2,
   ssl: true
 
-config :messengyr, Messengyr.Auth.Guardian,
-  secret_key: System.get_env("GUARDIAN_SECRET_KEY")
+config :messengyr, Messengyr.Auth.Guardian, secret_key: System.get_env("GUARDIAN_SECRET_KEY")
 
 config :phoenix, :serve_endpoints, true
 
@@ -67,4 +66,4 @@ config :phoenix, :serve_endpoints, true
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
-#import_config "prod.secret.exs"
+# import_config "prod.secret.exs"

@@ -13,11 +13,9 @@ defmodule Messengyr.Accounts.Session do
   end
 
   defp check_password(%{encrypted_password: encrypted_password} = user, given_password) do
-
     case Bcrypt.verify_pass(given_password, encrypted_password) do
-
       true -> {:ok, user}
-      _    -> {:error, "Incorrect password"}
+      _ -> {:error, "Incorrect password"}
     end
   end
 end

@@ -4,6 +4,28 @@ Facebook Messenger clone. **Phoenix 1.5.7** + **Phoenix Channels** + **React 16 
 
 **Not a LiveView app.** The `.opencode/agents/liveview-archtect.md` agent exists but its guidance is irrelevant here.
 
+## Critical workflow
+
+- **`mix precommit`** runs: `compile --warnings-as-errors` → `deps.unlock --unused` → `format` → `test`. Use this before every commit.
+
+### Branch workflow (MANDATORY — never bypass)
+
+1. **Create a feature branch first.** Never commit directly to `main`. Branch name convention: `fix/description` or `feat/description`.
+2. **Implement on the branch.** All work happens there.
+3. **Ask before every action** — each step requires explicit confirmation:
+   - "Can I commit?" → wait for answer before running `git commit`
+   - "Can I push?" → wait for answer before running `git push`
+   - "Can I open a pull request?" → wait for answer before running `gh pr create`
+4. **When opening a PR, assign the user as reviewer.** Use: `gh pr create --assignee @me` or assign the user specifically.
+5. **After PR is merged, delete the remote branch.**
+
+### Never
+
+- ❌ Commit directly to `main`
+- ❌ Push without asking
+- ❌ Open a PR without asking
+- ❌ Merge your own PR
+
 ## Commands
 
 | Command | Note |

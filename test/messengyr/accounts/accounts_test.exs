@@ -6,7 +6,7 @@ defmodule Messengyr.AccountsTest do
   test "create_user/1 with missing data returns error changeset" do
     params = %{
       "username" => "mingyar",
-      "password" => "pa55w0rd",
+      "password" => "pa55w0rd"
     }
 
     assert {:error, %Ecto.Changeset{}} = Accounts.create_user(params)
@@ -16,7 +16,7 @@ defmodule Messengyr.AccountsTest do
     params = %{
       "username" => "mingyar",
       "password" => "pa55w0rd",
-      "email" => "mingyar.furtado@gmail.com",
+      "email" => "mingyar.furtado@gmail.com"
     }
 
     assert {:ok, %User{}} = Accounts.create_user(params)

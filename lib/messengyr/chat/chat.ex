@@ -5,11 +5,12 @@ defmodule Messengyr.Chat do
   alias Messengyr.Accounts.User
 
   def list_user_rooms(user) do
-    query = from r in Room,
-      join: u in assoc(r, :users),
-      where: u.id == ^user.id
+    query =
+      from r in Room,
+        join: u in assoc(r, :users),
+        where: u.id == ^user.id
 
-      query |> Repo.all |> preload_room_data
+    query |> Repo.all() |> preload_room_data
   end
 
   def create_room do
@@ -54,13 +55,14 @@ defmodule Messengyr.Chat do
   end
 
   def room_has_user?(room, user) do
-    query = from ru in RoomUser,
-      where: ru.room_id == ^room.id and ru.user_id == ^user.id
+    query =
+      from ru in RoomUser,
+        where: ru.room_id == ^room.id and ru.user_id == ^user.id
 
-      case Repo.one(query) do
-        %RoomUser{} -> true
-        _ -> false
-      end
+    case Repo.one(query) do
+      %RoomUser{} -> true
+      _ -> false
+    end
   end
 
   def get_message(id) do
@@ -79,9 +81,9 @@ defmodule Messengyr.Chat do
     case add_room_user(room, first_user) do
       {:ok, _} ->
         add_room_users(room, other_users)
+
       _ ->
-      {:error, "Failed to add user to room!"}
+        {:error, "Failed to add user to room!"}
     end
   end
-
 end

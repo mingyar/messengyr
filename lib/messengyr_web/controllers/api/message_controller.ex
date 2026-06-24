@@ -16,8 +16,9 @@ defmodule MessengyrWeb.MessageController do
         else
           :not_allowed
         end
-      _ -> nil
+
+      _ ->
+        nil
     end
   end
-
 end

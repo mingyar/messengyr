@@ -19,7 +19,7 @@ defmodule MessengyrWeb.RoomController do
 
     render(conn, "index.json", %{
       rooms: rooms,
-      me: user,
+      me: user
     })
   end
 
@@ -29,9 +29,8 @@ defmodule MessengyrWeb.RoomController do
     with {:ok, room} <- Chat.create_room_with_counterpart(user, counterpart_username) do
       render(conn, "show.json", %{
         room: room,
-        me: user,
+        me: user
       })
     end
   end
-
 end

@@ -25,22 +25,22 @@ defmodule MessengyrWeb.RoomView do
 
   def render("index.json", %{rooms: rooms, me: me}) do
     %{
-      rooms: Enum.map(rooms, fn(room) -> room_json(room, %{me: me}) end)
+      rooms: Enum.map(rooms, fn room -> room_json(room, %{me: me}) end)
     }
   end
 
   defp room_json(%{users: room_users} = room, %{me: me}) do
     counterpart = get_counterpart(room_users, me)
+
     %{
       id: room.id,
       counterpart: user_jason(counterpart),
-      messages: Enum.map(room.messages, fn(message) -> message_json(message, %{me: me}) end),
-      createdAt: room.inserted_at,
+      messages: Enum.map(room.messages, fn message -> message_json(message, %{me: me}) end),
+      createdAt: room.inserted_at
     }
   end
 
   defp get_counterpart(users, me) do
-    Enum.find(users, fn(user) -> user.id != me.id end)
+    Enum.find(users, fn user -> user.id != me.id end)
   end
-
 end

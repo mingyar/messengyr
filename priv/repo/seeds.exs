@@ -16,11 +16,12 @@ alias Messengyr.Accounts.User
 
 me = Repo.one(User)
 
-{:ok, counterpart} = Accounts.create_user(%{
-  "username" => "bob",
-  "email" => "bob@example.com",
-  "password" => "test"
-})
+{:ok, counterpart} =
+  Accounts.create_user(%{
+    "username" => "bob",
+    "email" => "bob@example.com",
+    "password" => "test"
+  })
 
 Chat.add_room_user(room, me)
 

@@ -33,7 +33,7 @@ defmodule Messengyr.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.23"},
+      {:phoenix, "~> 1.8.8"},
       {:phoenix_ecto, "~> 4.7"},
       {:ecto_sql, "~> 3.14"},
       {:postgrex, ">= 0.22.0"},
@@ -48,7 +48,7 @@ defmodule Messengyr.MixProject do
       {:plug_cowboy, "~> 2.8"},
       {:bcrypt_elixir, "~> 3.3"},
       {:guardian, "~> 2.4"},
-      {:ex_doc, "~> 0.37", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.37", only: :dev, runtime: false}
     ]
   end
 
@@ -66,5 +66,4 @@ defmodule Messengyr.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
-
 end

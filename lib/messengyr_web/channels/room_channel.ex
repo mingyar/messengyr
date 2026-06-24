@@ -14,7 +14,9 @@ defmodule MessengyrWeb.RoomChannel do
         else
           {:error, %{reason: "You're not a member of this room!"}}
         end
-      _ -> {:error, %{reason: "This room doesn't exist!"}}
+
+      _ ->
+        {:error, %{reason: "This room doesn't exist!"}}
     end
   end
 
@@ -23,23 +25,23 @@ defmodule MessengyrWeb.RoomChannel do
     me = socket.assigns.current_user
     room = Chat.get_room(room_id)
 
-    with {:ok, message} <- Chat.add_message(%{
-      room: room,
-      user: me,
-      text: text,
-    }) do
-      IO.puts "Added message!"
+    with {:ok, message} <-
+           Chat.add_message(%{
+             room: room,
+             user: me,
+             text: text
+           }) do
+      IO.puts("Added message!")
 
       json = %{
-        messageId: message.id,
+        messageId: message.id
       }
 
-      broadcast! socket, "message:new", json
+      broadcast!(socket, "message:new", json)
 
       {:reply, :ok, socket}
     else
       _ -> {:error, %{reason: "Couldn't add message!"}}
     end
   end
-
 end

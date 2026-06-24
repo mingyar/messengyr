@@ -2,7 +2,7 @@
 
     <h1>Sign up for Messenger</h1>
   
-    <%= form_for @user_changeset, Routes.page_path(@conn, :create_user), fn f -> %>
+    <%= form_for @user_changeset, ~p"/signup", fn f -> %>
 
       <%= text_input f, :email, placeholder: "Email" %>
       <%=error_tag f, :email %>

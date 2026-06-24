@@ -3,9 +3,7 @@ defmodule Messengyr.Repo.Migrations.CreateRooms do
 
   def change do
     create table(:rooms) do
-
       timestamps()
     end
-
   end
 end

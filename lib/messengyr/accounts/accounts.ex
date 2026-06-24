@@ -5,11 +5,11 @@ defmodule Messengyr.Accounts do
   alias Messengyr.Repo
 
   def create_user(%{"password" => password} = params) do
-    encrypted_password = password |> Bcrypt.hash_pwd_salt
+    encrypted_password = password |> Bcrypt.hash_pwd_salt()
 
     register_changeset(params)
     |> put_change(:encrypted_password, encrypted_password)
-    |> Repo.insert
+    |> Repo.insert()
   end
 
   def register_changeset(params \\ %{}) do
@@ -26,5 +26,4 @@ defmodule Messengyr.Accounts do
   def get_user(user_id) do
     Repo.get(User, user_id)
   end
-
 end
