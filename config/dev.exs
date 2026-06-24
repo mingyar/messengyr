@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 config :messengyr, Messengyr.Repo,
@@ -21,8 +21,8 @@ config :messengyr, MessengyrWeb.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
+    npx: [
+      "webpack",
       "--mode",
       "development",
       "--watch-stdin",
@@ -61,7 +61,7 @@ config :messengyr, MessengyrWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/messengyr_web/(live|views)/.*(ex)$",
-      ~r"lib/messengyr_web/templates/.*(eex)$"
+      ~r"lib/messengyr_web/templates/.*(eex|heex)$"
     ]
   ]
 

@@ -20,5 +20,5 @@ defmodule MessengyrWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :messengyr
+  use Gettext.Backend, otp_app: :messengyr
 end

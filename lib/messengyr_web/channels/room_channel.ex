@@ -18,6 +18,7 @@ defmodule MessengyrWeb.RoomChannel do
     end
   end
 
+  @impl true
   def handle_in("message:new", %{"text" => text, "room_id" => room_id}, socket) do
     me = socket.assigns.current_user
     room = Chat.get_room(room_id)

@@ -8,7 +8,8 @@ defmodule MessengyrWeb.RoomController do
   def auth_error(conn, {_type, _reason}, _opts) do
     conn
     |> put_status(401)
-    |> render(ErrorView, "error.json", message: "You are not authenticated.")
+    |> put_view(ErrorView)
+    |> render("error.json", message: "You are not authenticated.")
   end
 
   def index(conn, _params) do

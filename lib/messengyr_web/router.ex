@@ -8,7 +8,7 @@ defmodule MessengyrWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Guardian.Plug.Pipeline,
-          module: Messengyr.Guardian,
+          module: Messengyr.Auth.Guardian,
           error_handler: MessengyrWeb.ChatController
   end
 
