@@ -93,6 +93,8 @@ class MenuContainer extends React.Component {
 		})
 		.then((response) => {
 			let room = response.room;
+			room.channel = getRoomChannel(room.id);
+			this.listenToNewMessages(room);
 			this.props.addRoom(room);
 		})
 		.catch((err) => {
