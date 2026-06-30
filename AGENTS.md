@@ -10,6 +10,10 @@ Facebook Messenger clone. **Phoenix 1.5.7** + **Phoenix Channels** + **React 16 
 
 ### Branch workflow (MANDATORY — never bypass)
 
+0. **Always pull the latest `main` first.** Before starting work on any issue, fetch and pull the most recent copy of `main`:
+   ```bash
+   git checkout main && git pull origin main
+   ```
 1. **Create a feature branch first.** Never commit directly to `main`. Branch name convention: `fix/description` or `feat/description`.
 2. **Implement on the branch.** All work happens there.
 3. **Ask before every action** — each step requires explicit confirmation:
@@ -18,6 +22,20 @@ Facebook Messenger clone. **Phoenix 1.5.7** + **Phoenix Channels** + **React 16 
    - "Can I open a pull request?" → wait for answer before running `gh pr create`
 4. **When opening a PR, assign the user as reviewer.** Use: `gh pr create --assignee @me` or assign the user specifically.
 5. **After PR is merged, delete the remote branch.**
+
+### Security fix workflow (MANDATORY)
+
+When fixing a security issue (or any bug), follow this process:
+
+1. **Write a failing test first** — write a test that captures the vulnerability
+2. **Run it to confirm** — it must fail, proving the bug exists
+3. **Show the user** the failing test output
+4. **Wait for user approval** before writing any fix code
+5. **Implement the fix**
+6. **The test now passes** — the vulnerability is closed
+7. **Run `mix test`** — full suite is green, nothing regressed
+
+Never skip step 1-4. Never jump to fix code before the user has seen the failing test.
 
 ### Never
 

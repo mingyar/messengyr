@@ -1,5 +1,22 @@
 # Lessons Learned
 
+## Workflow: Test-First Security Fix Process
+
+### Lesson: Write a failing test first, show it, then implement the fix
+- **Pattern**: When fixing a security issue (or any bug), ALWAYS write a test that captures the problem first. Show the failing test to the user. Only after they confirm, implement the fix. Never jump straight to code.
+- **Why**: This guarantees:
+  1. The fix actually addresses the specific vulnerability (test proves it was broken)
+  2. The test prevents regression (test proves it's now fixed)
+  3. The user reviews the test expectations before any code changes
+- **Fix**: Workflow is:
+  1. Write the failing test (that demonstrates the vulnerability)
+  2. Run it to confirm it fails
+  3. Show the user the test output
+  4. Wait for approval
+  5. Implement the fix
+  6. Run the test again — it passes
+  7. Run full `mix test` — nothing else broke
+
 ## Deployment: Fly.io + Neon (IPv4 DB on IPv6-only infra)
 
 ### Lesson 1: DNS64 is NOT available on Fly.io — use `getent` for IPv4 resolution
