@@ -26,7 +26,11 @@ config :messengyr, Messengyr.Repo,
   pool_size: 2,
   ssl: true
 
-config :messengyr, Messengyr.Auth.Guardian, secret_key: System.get_env("GUARDIAN_SECRET_KEY")
+config :messengyr, Messengyr.Auth.Guardian,
+  issuer: "messengyr",
+  ttl: {30, :days},
+  allowed_drift: 2000,
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY")
 
 config :phoenix, :serve_endpoints, true
 

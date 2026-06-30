@@ -20,3 +20,9 @@ config :messengyr, MessengyrWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warning
+
+config :messengyr, Messengyr.Auth.Guardian,
+  issuer: "messengyr",
+  ttl: {30, :days},
+  allowed_drift: 2000,
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY") || "dev-only-insecure-key-do-not-use-in-prod"

@@ -36,9 +36,3 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
-
-config :messengyr, Messengyr.Auth.Guardian,
-  issuer: "messengyr",
-  ttl: {30, :days},
-  allowoed_drift: 2000,
-  secret_key: "5ecret_k3y"

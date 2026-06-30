@@ -74,3 +74,9 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :messengyr, Messengyr.Auth.Guardian,
+  issuer: "messengyr",
+  ttl: {30, :days},
+  allowed_drift: 2000,
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY") || "dev-only-insecure-key-do-not-use-in-prod"
