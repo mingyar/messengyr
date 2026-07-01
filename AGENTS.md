@@ -25,7 +25,11 @@ Facebook Messenger clone. **Phoenix 1.5.7** + **Phoenix Channels** + **React 16 
    ```bash
    git checkout main && git pull origin main
    ```
-6. **After PR is merged, delete the remote branch.**
+6. **After PR is merged, delete the remote branch and the local plan file for that issue.** This keeps `.opencode/plans/security-fixes/` in sync with what's actually left to do:
+   ```bash
+   git push origin --delete fix/branch-name
+   rm .opencode/plans/security-fixes/gh<number>-*.md
+   ```
 
 ### Security fix workflow (MANDATORY)
 
