@@ -17,7 +17,7 @@ Facebook Messenger clone. **Phoenix 1.5.7** + **Phoenix Channels** + **React 16 
 1. **Create a feature branch first.** Never commit directly to `main`. Branch name convention: `fix/description` or `feat/description`.
 2. **Implement on the branch.** All work happens there.
 3. **Ask before every action** — each step requires explicit confirmation:
-   - "Can I commit?" → wait for answer before running `git commit`
+   - "Can I commit?" → wait for answer before running `git commit`. If there's a `.md` file (AGENTS.md, plan files, etc.) among staged changes, ask if the user wants it in a **separate commit** within the same branch.
    - "Can I push?" → wait for answer before running `git push`
    - "Can I open a pull request?" → wait for answer before running `gh pr create`
 4. **When opening a PR, assign the user as reviewer.** Use: `gh pr create --assignee @me` or assign the user specifically.
@@ -42,12 +42,14 @@ When fixing a security issue (or any bug), follow this process:
 5. **Implement the fix**
 6. **The test now passes** — the vulnerability is closed
 7. **Run `mix test`** — full suite is green, nothing regressed
+8. **Wait for user approval before committing** — show the passing test + full suite, then ask "Can I commit?"
 
-Never skip step 1-4. Never jump to fix code before the user has seen the failing test.
+Never skip step 1-4. Never jump to fix code before the user has seen the failing test. Never commit the solution before the user has checked the passing result.
 
 ### Never
 
 - ❌ Commit directly to `main`
+- ❌ Commit solution before user checks the passing result (step 8 in security fix workflow)
 - ❌ Push without asking
 - ❌ Open a PR without asking
 - ❌ Merge your own PR
