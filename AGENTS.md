@@ -21,7 +21,11 @@ Facebook Messenger clone. **Phoenix 1.5.7** + **Phoenix Channels** + **React 16 
    - "Can I push?" → wait for answer before running `git push`
    - "Can I open a pull request?" → wait for answer before running `gh pr create`
 4. **When opening a PR, assign the user as reviewer.** Use: `gh pr create --assignee @me` or assign the user specifically.
-5. **After PR is merged, delete the remote branch.**
+5. **After opening a PR, return to `main` and pull the latest.** Opening a PR means the job is finished — go back to a clean slate:
+   ```bash
+   git checkout main && git pull origin main
+   ```
+6. **After PR is merged, delete the remote branch.**
 
 ### Security fix workflow (MANDATORY)
 
