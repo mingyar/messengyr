@@ -13,7 +13,7 @@ config :messengyr,
 # Configures the endpoint
 config :messengyr, MessengyrWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "qWetP8ZBUJH0KWGM8Zqy9Ev48Nqi9i1RfH0fMknMLtxGCyQAjwKei7r+TO+QpuJ7",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [view: MessengyrWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Messengyr.PubSub,
   session: [

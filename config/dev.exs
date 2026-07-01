@@ -16,6 +16,9 @@ config :messengyr, Messengyr.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :messengyr, MessengyrWeb.Endpoint,
+  secret_key_base:
+    System.get_env("SECRET_KEY_BASE") ||
+      "dev-only-insecure-secret-key-base-must-set-SECRET_KEY_BASE-env-var",
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,

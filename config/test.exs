@@ -15,6 +15,9 @@ config :messengyr, Messengyr.Repo,
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :messengyr, MessengyrWeb.Endpoint,
+  secret_key_base:
+    System.get_env("SECRET_KEY_BASE") ||
+      "test-only-insecure-secret-key-base-must-set-SECRET_KEY_BASE-env-var",
   http: [port: 4002],
   server: false
 
